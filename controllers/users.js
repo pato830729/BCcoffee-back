@@ -8,7 +8,7 @@ export const register = async (req, res) => {
       account: req.body.account,
       password: req.body.password,
       email: req.body.email,
-      suspension: true
+      suspension: false
     })
     res.status(200).json({ success: true, message: '' })
   } catch (error) {
@@ -175,7 +175,7 @@ export const getAllUsers = async (req, res) => {
 
 export const editUser = async (req, res) => {
   try {
-    const result = await users.findByIdAndUpdate(req.user._id, {
+    const result = await users.findByIdAndUpdate(req.body._id, {
       suspension: req.body.suspension
 
     }, { new: true })
